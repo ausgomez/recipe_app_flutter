@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app_design/screens/menus/bottomNav.dart';
 
 class Wrapper extends StatelessWidget {
   @override
@@ -39,25 +40,7 @@ class Wrapper extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.fastfood),
-            title: Text('Discover'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            title: Text('Ingredients'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('Profile'),
-          ),
-        ],
-        backgroundColor: Colors.teal[600],
-        fixedColor: Colors.white,
-        unselectedItemColor: Colors.grey[400],
-      ),
+      bottomNavigationBar: myBottomNavigationBar(1),
     );
   }
 }
