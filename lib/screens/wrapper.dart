@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app_design/screens/Discover/discoverPage.dart';
+import 'package:recipe_app_design/screens/Cook/cookPage.dart';
+import 'package:recipe_app_design/screens/Profile/profilePage.dart';
 import 'package:recipe_app_design/menus/bottomNav.dart';
 
 class Wrapper extends StatefulWidget {
@@ -21,7 +23,8 @@ class _WrapperState extends State<Wrapper> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: DiscoverPage(),
+      body:
+          index == 0 ? DiscoverPage() : index == 1 ? CookPage() : ProfilePage(),
       bottomNavigationBar: myBottomNav(toggleView: toggleView, index: index),
     );
   }

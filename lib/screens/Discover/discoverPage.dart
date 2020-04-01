@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/menus/bottomNav.dart';
 
 class DiscoverPage extends StatefulWidget {
   @override
@@ -15,13 +14,6 @@ class _DiscoverPageState extends State<DiscoverPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          FlatButton(
-            onPressed: () => setState(() {
-              index = 0;
-              print(index);
-            }),
-            child: Text('Sign in', style: TextStyle(color: Colors.red)),
-          ),
           Text(
             'Search',
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
