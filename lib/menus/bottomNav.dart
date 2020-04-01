@@ -28,9 +28,9 @@ class _myBottomNavState extends State<myBottomNav> {
           title: Text('Profile'),
         ),
       ],
-      backgroundColor: Colors.teal[600],
+      backgroundColor: Colors.teal[300],
       fixedColor: Colors.white,
-      unselectedItemColor: Colors.grey[400],
+      unselectedItemColor: Colors.grey[200],
       onTap: (i) {
         widget.index = i;
         widget.toggleView(i);

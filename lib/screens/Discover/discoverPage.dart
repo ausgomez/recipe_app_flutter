@@ -7,8 +7,10 @@ class DiscoverPage extends StatefulWidget {
 
 class _DiscoverPageState extends State<DiscoverPage> {
   int index = 0;
+  List<String> tests = ["test1", "test2", "test3"];
   @override
   Widget build(BuildContext context) {
+    List<Widget> widgets = tests.map((name) => new Text(name)).toList();
     return Container(
       padding: EdgeInsets.only(top: 40.0, right: 20.0, left: 20.0),
       child: Column(
@@ -40,6 +42,12 @@ class _DiscoverPageState extends State<DiscoverPage> {
               contentPadding: EdgeInsets.all(16),
             ),
           ),
+          SizedBox(height: 50),
+          Container(
+            child: Column(
+              children: widgets,
+            ),
+          )
         ],
       ),
     );
