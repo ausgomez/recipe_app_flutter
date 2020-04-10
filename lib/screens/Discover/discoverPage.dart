@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app_design/data/recipes.dart';
 
 class DiscoverPage extends StatefulWidget {
   @override
@@ -44,9 +45,28 @@ class _DiscoverPageState extends State<DiscoverPage> {
           ),
           SizedBox(height: 50),
           Container(
-            child: Column(
-              children: widgets,
-            ),
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: tests.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      color: Colors.blue,
+                      child: Container(
+                        child: Center(
+                            child: Text(
+                          tests[index].toString(),
+                          style: TextStyle(color: Colors.white, fontSize: 36.0),
+                        )),
+                      ),
+                    ),
+                  );
+                }),
           )
         ],
       ),

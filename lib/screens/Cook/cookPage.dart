@@ -22,22 +22,12 @@ class _CookPageState extends State<CookPage> {
             style: TextStyle(fontSize: 30),
           ),
           SizedBox(height: 50),
-          TextField(
-            textAlign: TextAlign.center,
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              hintText: 'dish name',
-              hintStyle: TextStyle(fontSize: 16),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(100),
-                borderSide: BorderSide(
-                  width: 0,
-                  style: BorderStyle.none,
-                ),
-              ),
-              filled: true,
-              contentPadding: EdgeInsets.all(16),
-            ),
+          RaisedButton(
+            color: Colors.red,
+            child: Text('Go Forwards To Screen 2'),
+            onPressed: () {
+              Navigator.pushNamed(context, '/ingredients-add');
+            },
           ),
         ],
       ),
