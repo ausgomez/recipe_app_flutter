@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app_design/data/ingredients.dart';
+import 'package:recipe_app_design/screens/Cook/suggestRecipes.dart';
 
 class AddIngredientsPage extends StatefulWidget {
   @override
@@ -107,6 +108,7 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CircleAvatar(
+                                radius: 30,
                                 backgroundImage: NetworkImage(
                                     'https://spoonacular.com/cdn/ingredients_100x100/${localBasket[index]['image']}'),
                               ),
@@ -130,7 +132,12 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
       floatingActionButton: (localBasket.length > 2)
           ? FloatingActionButton(
               backgroundColor: Colors.orange,
-              onPressed: () => null,
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SuggestRecipes(localBasket),
+                ),
+              ),
               tooltip: 'Increment',
               child: Icon(Icons.arrow_forward),
             )
@@ -138,25 +145,3 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
     );
   }
 }
-
-/*
-GridView.count(
-                                    crossAxisCount: 4,
-                                    childAspectRatio: 1.0,
-                                    padding: const EdgeInsets.all(4.0),
-                                    mainAxisSpacing: 4.0,
-                                    crossAxisSpacing: 4.0,
-                                    children: <Widget>[
-                                      Container(
-                                        child: CircleAvatar(
-                                          radius: 20,
-                                          backgroundImage: NetworkImage(
-                                              "https://i.imgur.com/BoN9kdC.png"),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        child: Text('${localBasket[index]}'),
-                                      ),
-                                      Text('${localBasket[index]}')
-                                    ],
-                                  )*/

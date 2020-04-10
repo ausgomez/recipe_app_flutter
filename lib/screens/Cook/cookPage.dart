@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app_design/screens/Cook/addIngsPage.dart';
 
 class CookPage extends StatefulWidget {
   @override
@@ -26,7 +27,8 @@ class _CookPageState extends State<CookPage> {
             color: Colors.red,
             child: Text('Start Cooking'),
             onPressed: () {
-              Navigator.pushNamed(context, '/ingredients-add');
+              Navigator.pushNamed(context, '/ingredients-add',
+                  arguments: AddIngredientsPage());
             },
           ),
         ],

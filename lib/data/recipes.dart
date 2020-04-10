@@ -1,18 +1,8 @@
-import 'dart:async';
+import 'package:recipe_app_design/services/api_calls.dart';
 
-class Recipe {
-  String name;
-  String desc;
-
-  Recipe(String name, String desc) {
-    this.name = name;
-    this.desc = desc;
+class Recipes {
+  Future<List> matchRecipes(dynamic ings) async {
+    final obj = await callRecipes(ings);
+    return obj;
   }
-}
-
-StreamController<Recipe> recipesController = StreamController<Recipe>();
-Stream recipesStream = recipesController.stream;
-
-void addRecipe(String name, String desc) async {
-  recipesController.add(new Recipe(name, desc));
 }

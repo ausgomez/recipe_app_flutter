@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/ingredients-add',
       routes: {
         '/': (context) => Wrapper(),
         '/ingredients-add': (context) => AddIngredientsPage(),
