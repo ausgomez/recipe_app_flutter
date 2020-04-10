@@ -14,7 +14,7 @@ class Ingredients {
     'eggs'
   ];
 
-  Future<dynamic> matchIngredients(String hint) async {
-    return ingredients.where((element) => element.contains(hint));
+  Future<List> matchIngredients(String hint) async {
+    return ingredients.where((element) => element.contains(hint)).toList();
   }
 }
