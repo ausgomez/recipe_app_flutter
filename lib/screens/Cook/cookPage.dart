@@ -24,7 +24,7 @@ class _CookPageState extends State<CookPage> {
           SizedBox(height: 50),
           RaisedButton(
             color: Colors.red,
-            child: Text('Go Forwards To Screen 2'),
+            child: Text('Start Cooking'),
             onPressed: () {
               Navigator.pushNamed(context, '/ingredients-add');
             },

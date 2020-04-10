@@ -7,8 +7,8 @@ class AddIngredientsPage extends StatefulWidget {
 }
 
 class _AddIngredientsPageState extends State<AddIngredientsPage> {
-  List localIngs = [];
-  List localBasket = [];
+  dynamic localIngs = [];
+  dynamic localBasket = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,8 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                   onSubmitted: (value) async {
                     print('before ings: $localIngs');
                     var obj = await Ingredients().matchIngredients(value);
+                    print('The object received:');
+                    print(obj);
                     setState(() {
                       localIngs = obj.toList();
                     });
@@ -68,7 +70,8 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                                 elevation: 5,
                                 child: Container(
                                   padding: EdgeInsets.all(20),
-                                  child: Text('${localIngs.toList()[index]}'),
+                                  child: Text(
+                                      '${localIngs.toList()[index]['name']}'),
                                 ),
                               ),
                             );
@@ -105,11 +108,11 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                             children: [
                               CircleAvatar(
                                 backgroundImage: NetworkImage(
-                                    'https://spoonacular.com/cdn/ingredients_100x100/apple-juice.jpg'),
+                                    'https://spoonacular.com/cdn/ingredients_100x100/${localBasket[index]['image']}'),
                               ),
                               SizedBox(height: 10),
                               Text(
-                                localBasket[index],
+                                localBasket[index]['name'],
                                 style: TextStyle(color: Colors.white),
                               )
                             ],

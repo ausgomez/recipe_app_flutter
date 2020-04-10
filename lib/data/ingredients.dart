@@ -1,3 +1,5 @@
+import 'package:recipe_app_design/services/api_calls.dart';
+
 class Ingredients {
   final ingredients = [
     'apple',
@@ -15,6 +17,7 @@ class Ingredients {
   ];
 
   Future<List> matchIngredients(String hint) async {
-    return ingredients.where((element) => element.contains(hint)).toList();
+    final obj = await callIngredients(hint);
+    return obj;
   }
 }
