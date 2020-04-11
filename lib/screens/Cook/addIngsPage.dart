@@ -35,6 +35,10 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                   onSubmitted: (value) async {
                     print('before ings: $localIngs');
                     var obj = await Ingredients().matchIngredients(value);
+                    if (obj == null) {
+                      Navigator.pushNamed(context, '/error-page');
+                      return;
+                    }
                     print('The object received:');
                     print(obj);
                     setState(() {

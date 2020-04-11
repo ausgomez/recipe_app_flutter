@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app_design/screens/errorPage.dart';
 import 'package:recipe_app_design/screens/wrapper.dart';
 import 'package:recipe_app_design/screens/Cook/addIngsPage.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Wrapper(),
         '/ingredients-add': (context) => AddIngredientsPage(),
+        '/error-page': (context) => ErrorPage(),
       },
     );
   }

@@ -17,7 +17,11 @@ class Ingredients {
   ];
 
   Future<List> matchIngredients(String hint) async {
-    final obj = await callIngredients(hint);
-    return obj;
+    try {
+      final obj = await callIngredients(hint);
+      return obj;
+    } catch (e) {
+      return null;
+    }
   }
 }

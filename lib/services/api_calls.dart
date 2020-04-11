@@ -6,7 +6,8 @@ import 'dart:io';
 final String _baseURL = "api.spoonacular.com";
 //const String API_KEY = "e33830a4c39a4837ba390fb050cd284c";
 //const String API_KEY = "1f9d617ba13041859ea773423b0e6291";
-const String API_KEY = "c412e93b97ca4181a521352987c56254";
+//const String API_KEY = "c412e93b97ca4181a521352987c56254";
+const String API_KEY = "3f93e5214b0a44b78205c5ec6272f785";
 
 Map<String, String> headers = {
   HttpHeaders.contentTypeHeader: 'application/json',
@@ -25,11 +26,16 @@ Future<dynamic> callIngredients(String hint) async {
     parameters,
   );
 
-  var response = await http.get(uri, headers: headers);
+  var response;
 
-  final responseJson = json.decode(response.body);
+  try {
+    response = await http.get(uri, headers: headers);
+    final responseJson = json.decode(response.body);
 
-  return responseJson;
+    return responseJson;
+  } catch (e) {
+    return null;
+  }
 }
 
 /* get recipes by ingredients */
@@ -51,8 +57,40 @@ Future<dynamic> callRecipes(dynamic ingredients) async {
     parameters,
   );
 
-  var response = await http.get(uri, headers: headers);
+  var response;
 
-  final responseJson = json.decode(response.body);
-  return responseJson;
+  try {
+    response = await http.get(uri, headers: headers);
+    final responseJson = json.decode(response.body);
+
+    return responseJson;
+  } catch (e) {
+    return null;
+  }
+}
+
+/* get recipe by ID */
+Future<dynamic> getRecipe(int id) async {
+  Map<String, String> parameters = {
+    'apiKey': API_KEY,
+    'includeNutrition': 'false'
+  };
+
+  Uri uri = Uri.https(
+    _baseURL,
+    '/recipes/${id.toString()}/information',
+    parameters,
+  );
+
+  var response;
+
+  try {
+    print('making http get');
+    response = await http.get(uri, headers: headers);
+    final responseJson = json.decode(response.body);
+
+    return responseJson;
+  } catch (e) {
+    return null;
+  }
 }

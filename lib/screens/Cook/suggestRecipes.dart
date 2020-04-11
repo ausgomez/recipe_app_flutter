@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app_design/data/recipes.dart';
+import 'package:recipe_app_design/screens/Cook/recipePage.dart';
 import 'package:recipe_app_design/services/api_calls.dart' as api;
 
 class SuggestRecipes extends StatefulWidget {
@@ -16,11 +17,13 @@ class _SuggestRecipesState extends State<SuggestRecipes> {
 
   void fillLocalRecipes() async {
     var obj = await Recipes().matchRecipes(widget.passedIngs);
+    if (obj == null) {
+      Navigator.pushNamed(context, '/error-page');
+      return;
+    }
     setState(() {
       localRecipes = obj.toList();
     });
-    print('printing local recipes');
-    print(localRecipes);
   }
 
   @override
@@ -42,7 +45,11 @@ class _SuggestRecipesState extends State<SuggestRecipes> {
         itemBuilder: (context, int index) {
           return InkWell(
             onTap: () {
-              print('tapped recipe!');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          RecipePage(localRecipes[index]['id'])));
             },
             child: Container(
               height: 130,
@@ -64,6 +71,7 @@ class _SuggestRecipesState extends State<SuggestRecipes> {
                   Container(
                     child: Flexible(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           SizedBox(
                             height: 20,
@@ -74,7 +82,14 @@ class _SuggestRecipesState extends State<SuggestRecipes> {
                             style:
                                 TextStyle(color: Colors.black54, fontSize: 20),
                           ),
-                          FlutterLogo()
+                          FlatButton.icon(
+                            onPressed: null,
+                            icon: Icon(Icons.star),
+                            label:
+                                Text(localRecipes[index]['likes'].toString()),
+                            color: Colors.orange,
+                            padding: EdgeInsets.all(10.0),
+                          )
                         ],
                       ),
                     ),
@@ -99,13 +114,10 @@ class _SuggestRecipesState extends State<SuggestRecipes> {
     var arr = text.split(' ');
 
     if (arr.length > 4) {
-      text = arr.sublist(0, 3).join(' ');
-      text += '\n' + arr[arr.length - 1];
+      text = arr.sublist(0, 4).join(' ');
     } else {
       text = arr.join(' ');
     }
-
-    print(text);
     return text;
   }
 }
