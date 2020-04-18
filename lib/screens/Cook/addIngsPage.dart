@@ -10,6 +10,8 @@ class AddIngredientsPage extends StatefulWidget {
 class _AddIngredientsPageState extends State<AddIngredientsPage> {
   dynamic localIngs = [];
   dynamic localBasket = [];
+  bool enable = true;
+  String message = 'Please search for ingredients';
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,8 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
               Container(
                 padding: EdgeInsets.all(10.0),
                 child: TextField(
+                  enabled: enable,
+                  maxLength: 30,
                   decoration: InputDecoration(
                       hintText: 'Search for ingredients',
                       prefixIcon: Icon(Icons.search)),
@@ -33,7 +37,12 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                   //decoration: kTextFieldInputDecoration,
                   onChanged: (value) {},
                   onSubmitted: (value) async {
+                    // when submitted, it will look for ingredients
                     print('before ings: $localIngs');
+                    setState(() {
+                      message = 'Looking for ingredients...';
+                      enable = false;
+                    });
                     var obj = await Ingredients().matchIngredients(value);
                     if (obj == null) {
                       Navigator.pushNamed(context, '/error-page');
@@ -43,6 +52,11 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                     print(obj);
                     setState(() {
                       localIngs = obj.toList();
+                      message = 'End of the list';
+                      if (localIngs.length < 1) {
+                        message = 'No ingredients found...';
+                      }
+                      enable = true;
                     });
                     print('ings: $localIngs');
                   },
@@ -82,14 +96,14 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                             );
                           },
                         )
-                      : Text(''),
+                      : Text(message),
                 ),
               ),
-              Text('Your Basket'),
+              Text('🧺 Your Basket'),
               Container(
                 margin: EdgeInsets.all(15.0),
                 child: SizedBox(
-                  height: 300,
+                  height: 250,
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3),
@@ -117,9 +131,11 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                                     'https://spoonacular.com/cdn/ingredients_100x100/${localBasket[index]['image']}'),
                               ),
                               SizedBox(height: 10),
-                              Text(
-                                localBasket[index]['name'],
-                                style: TextStyle(color: Colors.white),
+                              Center(
+                                child: Text(
+                                  localBasket[index]['name'].trim(),
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               )
                             ],
                           ),

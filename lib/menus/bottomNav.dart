@@ -16,21 +16,23 @@ class _myBottomNavState extends State<myBottomNav> {
       currentIndex: widget.index,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.fastfood),
+          icon: Icon(Icons.explore),
           title: Text('Discover'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart),
+          icon: Icon(Icons.restaurant),
           title: Text('Cook'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.school),
+          icon: Icon(Icons.face),
           title: Text('Profile'),
         ),
       ],
-      backgroundColor: Colors.teal[300],
-      fixedColor: Colors.white,
-      unselectedItemColor: Colors.grey[200],
+      backgroundColor: Colors.red[300],
+      //fixedColor: Colors.white,
+      iconSize: 30,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.red[100],
       onTap: (i) {
         widget.index = i;
         widget.toggleView(i);
