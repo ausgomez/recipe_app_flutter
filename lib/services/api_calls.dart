@@ -94,3 +94,29 @@ Future<dynamic> getRecipe(int id) async {
     return null;
   }
 }
+
+/* get random recipes ID */
+Future<dynamic> callRandomRecipes(int size) async {
+  Map<String, String> parameters = {
+    'apiKey': API_KEY,
+    'number': size.toString(),
+  };
+
+  Uri uri = Uri.https(
+    _baseURL,
+    '/recipes/random',
+    parameters,
+  );
+
+  var response;
+
+  try {
+    response = await http.get(uri, headers: headers);
+    final responseJson = json.decode(response.body);
+    print('respondeJSO');
+
+    return responseJson['recipes'];
+  } catch (e) {
+    return null;
+  }
+}
