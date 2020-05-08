@@ -60,7 +60,7 @@ class _RecipePageState extends State<RecipePage> {
                     child: Column(
                       children: [
                         Text(
-                          recipe.title,
+                          recipe.title + ' ' + recipe.id.toString(),
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 30),
                         ),
@@ -80,6 +80,20 @@ class _RecipePageState extends State<RecipePage> {
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           child: Column(
                             children: [
+                              Center(
+                                child: Text(
+                                  'Ingredients',
+                                  style: TextStyle(fontSize: 30),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              ingsTabs(recipe.ingredients),
+                              //Text(recipe.ingredients.toString()),
+                              SizedBox(
+                                height: 20,
+                              ),
                               Center(
                                 child: Text(
                                   'Steps',
@@ -115,6 +129,8 @@ dynamic stepsTabs(var steps) => SizedBox(
           return InkWell(
             onTap: () {},
             child: Container(
+              /* The container height adapts to the length of the text if the
+              length is more than 100 characters */
               height: steps[index]['step'].length > 100
                   ? 35 * (steps[index]['step'].length / 32)
                   : 200,
@@ -146,6 +162,46 @@ dynamic stepsTabs(var steps) => SizedBox(
                     ),
                   )
                 ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+
+dynamic ingsTabs(var ingredients) => Container(
+      height: 200,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return Container(
+            width: MediaQuery.of(context).size.width * 0.40,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              color: cg.lightColor(index),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 25,
+                      backgroundImage: NetworkImage(
+                          'https://spoonacular.com/cdn/ingredients_100x100/${ingredients[index]['image']}' ??
+                              ''),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      ingredients[index]['originalString'] ?? '',
+                      textAlign: TextAlign.center,
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                    )
+                  ],
+                ),
               ),
             ),
           );
