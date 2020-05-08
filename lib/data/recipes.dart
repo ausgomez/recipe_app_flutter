@@ -16,7 +16,7 @@ class Recipes {
 
     try {
       final objs = await callRandomRecipes(size);
-      print('passed onjs');
+      print('passed objs');
 
       objs.forEach((obj) {
         var rec = new Recipe(obj["id"]);

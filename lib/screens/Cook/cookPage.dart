@@ -10,26 +10,52 @@ class _CookPageState extends State<CookPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/cooking-background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
       padding: EdgeInsets.only(top: 40.0, right: 20.0, left: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            'Cook',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          SizedBox(height: 50),
+          Center(
+            child: Text(
+              'Start cooking',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
-          Text(
-            'Page',
-            style: TextStyle(fontSize: 30),
+          Center(
+            child: Text(
+              'with what you have',
+              style: TextStyle(fontSize: 30),
+            ),
           ),
           SizedBox(height: 50),
-          RaisedButton(
-            color: Colors.red,
-            child: Text('Start Cooking'),
-            onPressed: () {
-              Navigator.pushNamed(context, '/ingredients-add',
-                  arguments: AddIngredientsPage());
-            },
+          Center(
+            child: ButtonTheme(
+              minWidth: 200.0,
+              height: 60.0,
+              child: RaisedButton(
+                color: Colors.red[400],
+                child: Text(
+                  "Let's do it",
+                  style: TextStyle(color: Colors.white, fontSize: 17),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/ingredients-add',
+                    arguments: AddIngredientsPage(),
+                  );
+                },
+              ),
+            ),
           ),
         ],
       ),

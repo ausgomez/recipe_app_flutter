@@ -23,7 +23,7 @@ class Recipe {
       //print('summary passed as ${this.summary}');
       this.imageLink = obj['image'];
       this.prepTime = obj['cookingMinutes'].toString();
-      this.steps = obj['analyzedInstructions'][0];
+      this.steps = obj['analyzedInstructions'][0]['steps'];
       //print('printing obj from class');
       //print(obj);
     } catch (e) {

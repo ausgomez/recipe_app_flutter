@@ -11,3 +11,15 @@ Color lightColor(int i) {
 
   return i >= colors.length ? colors[i % colors.length] : colors[i];
 }
+
+Color mediumColor(int i) {
+  var colors = [
+    Colors.orange[400],
+    Colors.red[300],
+    Colors.green[400],
+    Colors.blue[300],
+    Colors.purple[300]
+  ];
+
+  return i >= colors.length ? colors[i % colors.length] : colors[i];
+}

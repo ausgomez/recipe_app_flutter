@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app_design/models/Recipe.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:recipe_app_design/screens/loading.dart';
+import 'package:recipe_app_design/services/color_generator.dart' as cg;
 
 class RecipePage extends StatefulWidget {
+  /* To build a recipe page, a valid recipe ID must be provided */
   RecipePage(this.id);
   final int id;
   @override
@@ -10,7 +13,7 @@ class RecipePage extends StatefulWidget {
 }
 
 class _RecipePageState extends State<RecipePage> {
-  dynamic recipe;
+  Recipe recipe;
 
   @override
   void initState() {
@@ -31,9 +34,12 @@ class _RecipePageState extends State<RecipePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: recipe != null
-          ? Center(
+    return recipe != null
+        ? Scaffold(
+            appBar: AppBar(
+              title: Text(recipe.title),
+            ),
+            body: Center(
               child: ListView(
                 children: [
                   Container(
@@ -47,23 +53,102 @@ class _RecipePageState extends State<RecipePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    recipe.title + '\n' + recipe.id.toString(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20),
+                    height: 10,
                   ),
                   Container(
                     margin: EdgeInsets.all(30),
-                    child: Html(
-                      data: recipe.summary,
+                    child: Column(
+                      children: [
+                        Text(
+                          recipe.title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 30),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Html(
+                          linkStyle: null,
+                          data: recipe.summary,
+                        ),
+                      ],
                     ),
                   ),
+                  recipe.steps != null
+                      ? Container(
+                          margin: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Text(
+                                  'Steps',
+                                  style: TextStyle(fontSize: 30),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              stepsTabs(recipe.steps),
+                              //stepsTabs(4)
+                              //Text(recipe.steps['steps'].toString())
+                            ],
+                          ),
+                        )
+                      : Center(
+                          child: Text(
+                          'No Steps available',
+                          style: TextStyle(fontSize: 20),
+                        ))
                 ],
               ),
-            )
-          : Center(child: Text('loading...')),
-    );
+            ))
+        : LoadingPage();
   }
 }
+
+dynamic stepsTabs(var steps) => SizedBox(
+      height: 350,
+      child: ListView.builder(
+        itemCount: steps.length,
+        itemBuilder: (context, int index) {
+          return InkWell(
+            onTap: () {},
+            child: Container(
+              height: steps[index]['step'].length > 100
+                  ? 35 * (steps[index]['step'].length / 32)
+                  : 200,
+              margin: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              decoration: BoxDecoration(
+                color: cg.mediumColor(index),
+                borderRadius: BorderRadius.circular(40),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    child: Flexible(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Center(
+                            child: Text(
+                              steps[index]['step'],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
