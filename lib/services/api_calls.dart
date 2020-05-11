@@ -5,9 +5,6 @@ import 'dart:convert';
 import 'dart:io';
 
 final String _baseURL = "api.spoonacular.com";
-//const String API_KEY = "e33830a4c39a4837ba390fb050cd284c";
-//const String API_KEY = "1f9d617ba13041859ea773423b0e6291";
-//const String API_KEY = "c412e93b97ca4181a521352987c56254";
 String API_KEY = DotEnv().env['SPOONACULAR_API'];
 
 Map<String, String> headers = {
