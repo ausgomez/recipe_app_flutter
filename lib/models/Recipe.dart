@@ -6,6 +6,8 @@ class Recipe {
   String summary;
   String imageLink;
   String prepTime;
+  int mins;
+  int likes;
   dynamic steps;
   dynamic ingredients;
 
@@ -26,6 +28,8 @@ class Recipe {
       this.prepTime = obj['cookingMinutes'].toString();
       this.steps = obj['analyzedInstructions'][0]['steps'];
       this.ingredients = obj['extendedIngredients'];
+      this.mins = obj['readyInMinutes'];
+      this.likes = obj['aggregateLikes'];
       //print('printing obj from class');
       //print(obj);
     } catch (e) {

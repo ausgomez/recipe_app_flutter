@@ -120,3 +120,26 @@ Future<dynamic> callRandomRecipes(int size) async {
     return null;
   }
 }
+
+/* get recipe search by query */
+Future<dynamic> searchRecipesByQuery(String query) async {
+  Map<String, String> parameters = {'apiKey': API_KEY, 'query': query};
+
+  Uri uri = Uri.https(
+    _baseURL,
+    '/recipes/search',
+    parameters,
+  );
+
+  var response;
+
+  try {
+    response = await http.get(uri, headers: headers);
+    final responseJson = json.decode(response.body);
+    print('API call request to search for recipes by query ✅');
+    return responseJson;
+  } catch (e) {
+    print('something went wrong at the apiCALL 🛑🛑🛑');
+    return null;
+  }
+}

@@ -14,10 +14,10 @@ Color lightColor(int i) {
 
 Color mediumColor(int i) {
   var colors = [
+    Colors.blue[300],
     Colors.orange[400],
     Colors.red[300],
     Colors.green[400],
-    Colors.blue[300],
     Colors.purple[300]
   ];
 

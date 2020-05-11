@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app_design/data/recipes.dart';
+import 'package:recipe_app_design/screens/Cook/recipePage.dart';
+import 'package:recipe_app_design/screens/Cook/searchRecipes.dart';
 import 'package:recipe_app_design/screens/loading.dart' as loadingP;
 import 'package:recipe_app_design/services/color_generator.dart' as cg;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -27,11 +29,14 @@ class _DiscoverPageState extends State<DiscoverPage> {
 
   List suggestions = [
     {'title': 'American', 'icon': Icons.fastfood},
+    {'title': 'Greek', 'icon': Icons.local_pizza},
     {'title': 'Italian', 'icon': Icons.local_pizza},
-    {'title': 'Italian', 'icon': Icons.local_pizza},
-    {'title': 'Italian', 'icon': Icons.local_pizza},
-    {'title': 'Italian', 'icon': Icons.local_pizza},
-    {'title': 'Italian', 'icon': Icons.local_pizza}
+    {'title': 'Mexican', 'icon': Icons.local_pizza},
+    {'title': 'Thai', 'icon': Icons.local_pizza},
+    {'title': 'Chinese', 'icon': Icons.local_pizza},
+    {'title': 'Japanese', 'icon': Icons.local_pizza},
+    {'title': 'Korean', 'icon': Icons.local_pizza},
+    {'title': 'German', 'icon': Icons.local_pizza}
   ];
 
   @override
@@ -77,7 +82,12 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   filled: true,
                   contentPadding: EdgeInsets.all(16),
                 ),
-                onSubmitted: (value) => {print(value)},
+                onSubmitted: (value) => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchRecipes(value)))
+                },
               ),
               SizedBox(height: 10),
               Container(
@@ -94,7 +104,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                             IconButton(
                               color: Colors.grey,
                               icon: Icon(suggestions[index]['icon']),
-                              tooltip: 'Increase volume by 10',
+                              tooltip: 'Category',
                               onPressed: () {
                                 setState(() {
                                   print(suggestions[index]);
@@ -136,29 +146,40 @@ class _DiscoverPageState extends State<DiscoverPage> {
                         itemBuilder: (context, index) {
                           return Container(
                             width: MediaQuery.of(context).size.width * 0.55,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              color: cg.lightColor(index),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 70,
-                                      backgroundImage: NetworkImage(
-                                          localRecipes[index].imageLink ?? ''),
-                                    ),
-                                    SizedBox(height: 20),
-                                    Text(
-                                      localRecipes[index].title ?? 'Item',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400),
-                                    )
-                                  ],
+                            child: InkWell(
+                              onTap: () => {
+                                /* when a slide is clicked */
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            RecipePage(localRecipes[index].id)))
+                              },
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                color: cg.lightColor(index),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 70,
+                                        backgroundImage: NetworkImage(
+                                            localRecipes[index].imageLink ??
+                                                ''),
+                                      ),
+                                      SizedBox(height: 20),
+                                      Text(
+                                        localRecipes[index].title ?? 'Item',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w400),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

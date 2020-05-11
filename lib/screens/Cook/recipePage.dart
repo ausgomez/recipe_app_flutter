@@ -28,6 +28,7 @@ class _RecipePageState extends State<RecipePage> {
     await res.buildRecipe();
     setState(() {
       recipe = res;
+      print(recipe);
     });
     print(widget.id);
   }
@@ -60,17 +61,90 @@ class _RecipePageState extends State<RecipePage> {
                     child: Column(
                       children: [
                         Text(
-                          recipe.title + ' ' + recipe.id.toString(),
+                          recipe.title,
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 30),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 30,
                         ),
-                        Html(
-                          linkStyle: null,
-                          data: recipe.summary,
-                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              height: 90,
+                              child: Column(
+                                children: [
+                                  Container(
+                                      height: 50,
+                                      child: RaisedButton(
+                                        elevation: 20,
+                                        color: Colors.blue[400],
+                                        child: Icon(
+                                          Icons.access_time,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () => {},
+                                        shape: CircleBorder(),
+                                      ),
+                                      margin: EdgeInsets.only(bottom: 10)),
+                                  Text(
+                                    '${recipe.mins} min',
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 90,
+                              child: Column(
+                                children: [
+                                  Container(
+                                      height: 50,
+                                      child: RaisedButton(
+                                        elevation: 20,
+                                        color: Colors.blue[400],
+                                        child: Icon(
+                                          Icons.thumb_up,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () => {},
+                                        shape: CircleBorder(),
+                                      ),
+                                      margin: EdgeInsets.only(bottom: 10)),
+                                  Text(
+                                    recipe.likes.toString() + ' likes',
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: 90,
+                              child: Column(
+                                children: [
+                                  Container(
+                                      height: 50,
+                                      child: RaisedButton(
+                                        elevation: 20,
+                                        color: Colors.blue[400],
+                                        child: Icon(
+                                          Icons.bookmark_border,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () => {},
+                                        shape: CircleBorder(),
+                                      ),
+                                      margin: EdgeInsets.only(bottom: 10)),
+                                  Text(
+                                    'Save',
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),
@@ -181,7 +255,7 @@ dynamic ingsTabs(var ingredients) => Container(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
-              color: cg.lightColor(index),
+              color: Colors.orange[300],
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
@@ -197,8 +271,10 @@ dynamic ingsTabs(var ingredients) => Container(
                     Text(
                       ingredients[index]['originalString'] ?? '',
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black38),
                     )
                   ],
                 ),

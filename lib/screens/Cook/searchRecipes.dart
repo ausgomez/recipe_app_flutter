@@ -6,21 +6,23 @@ import 'package:recipe_app_design/services/color_generator.dart' as cg;
 import 'package:recipe_app_design/screens/loading.dart';
 import 'package:recipe_app_design/services/utilities.dart' as utils;
 
-class SuggestRecipes extends StatefulWidget {
-  final passedIngs;
-
-  SuggestRecipes(this.passedIngs);
+class SearchRecipes extends StatefulWidget {
+  final query;
+  SearchRecipes(this.query);
 
   @override
-  _SuggestRecipesState createState() => _SuggestRecipesState();
+  _SearchRecipesState createState() => _SearchRecipesState();
 }
 
-class _SuggestRecipesState extends State<SuggestRecipes> {
+class _SearchRecipesState extends State<SearchRecipes> {
   dynamic localRecipes = [];
 
   void fillLocalRecipes() async {
-    var obj = await Recipes().matchRecipes(widget.passedIngs);
+    print("query is ${widget.query}");
+    var obj = await Recipes().searchForRecipesByName(widget.query);
     if (obj == null) {
+      print('obj is null! 🛑');
+      print(obj);
       Navigator.pushNamed(context, '/error-page');
       return;
     }
@@ -33,7 +35,6 @@ class _SuggestRecipesState extends State<SuggestRecipes> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     fillLocalRecipes();
   }
 

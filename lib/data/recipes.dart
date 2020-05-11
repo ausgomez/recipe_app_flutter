@@ -28,14 +28,27 @@ class Recipes {
 
         recipes.add(rec);
 
-        print(rec);
-        print('recipe added!');
+        //print(rec);
+        //print('recipe added!');
       });
 
-      print('recipes ready');
-      print(recipes);
+      //print('recipes ready');
+      //print(recipes);
       return recipes;
     } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future<List> searchForRecipesByName(String query) async {
+    try {
+      final obj = await searchRecipesByQuery(query);
+      print('recipes.dart returned an objet JSON 🖖🏻');
+      print(obj['recipes']);
+      return obj['recipes'];
+    } catch (e) {
+      print('Uh oh! ERROR 🛑');
       print(e.toString());
       return null;
     }
