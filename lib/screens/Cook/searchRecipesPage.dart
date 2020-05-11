@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app_design/data/recipes.dart';
 import 'package:recipe_app_design/screens/Cook/recipePage.dart';
+import 'package:recipe_app_design/screens/errorPage.dart';
 import 'package:recipe_app_design/services/api_calls.dart' as api;
 import 'package:recipe_app_design/services/color_generator.dart' as cg;
 import 'package:recipe_app_design/screens/loading.dart';
 import 'package:recipe_app_design/services/utilities.dart' as utils;
 
-class SearchRecipes extends StatefulWidget {
+class SearchRecipesPage extends StatefulWidget {
   final query;
-  SearchRecipes(this.query);
+  SearchRecipesPage(this.query);
 
   @override
-  _SearchRecipesState createState() => _SearchRecipesState();
+  _SearchRecipesPageState createState() => _SearchRecipesPageState();
 }
 
-class _SearchRecipesState extends State<SearchRecipes> {
+class _SearchRecipesPageState extends State<SearchRecipesPage> {
   dynamic localRecipes = [];
   bool searched = false;
 
@@ -24,7 +25,11 @@ class _SearchRecipesState extends State<SearchRecipes> {
     if (obj == null) {
       print('obj is null! 🛑');
       print(obj);
-      Navigator.pushNamed(context, '/error-page');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ErrorPage('Error getting Recipes by Query')));
       return;
     }
     setState(() {

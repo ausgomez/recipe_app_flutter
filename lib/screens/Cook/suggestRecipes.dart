@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app_design/data/recipes.dart';
 import 'package:recipe_app_design/screens/Cook/recipePage.dart';
+import 'package:recipe_app_design/screens/errorPage.dart';
 import 'package:recipe_app_design/services/api_calls.dart' as api;
 import 'package:recipe_app_design/services/color_generator.dart' as cg;
 import 'package:recipe_app_design/screens/loading.dart';
@@ -21,7 +22,11 @@ class _SuggestRecipesState extends State<SuggestRecipes> {
   void fillLocalRecipes() async {
     var obj = await Recipes().matchRecipes(widget.passedIngs);
     if (obj == null) {
-      Navigator.pushNamed(context, '/error-page');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ErrorPage('Error matching recipes from API')));
       return;
     }
     setState(() {

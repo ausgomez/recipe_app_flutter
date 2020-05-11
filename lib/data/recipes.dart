@@ -1,5 +1,6 @@
 import 'package:recipe_app_design/services/api_calls.dart';
 import 'package:recipe_app_design/models/Recipe.dart';
+import 'package:flutter/material.dart';
 
 class Recipes {
   Future<List> matchRecipes(dynamic ings) async {
@@ -45,11 +46,23 @@ class Recipes {
     try {
       final obj = await searchRecipesByQuery(query);
       print('recipes.dart returned an objet JSON 🖖🏻');
-      return obj['results'];
+      return obj;
     } catch (e) {
       print('Uh oh! ERROR 🛑');
       print(e.toString());
-      return null;
+      return e;
+    }
+  }
+
+  Future<List> getRecipesByCuisine(String cuisine) async {
+    try {
+      final obj = await findRecipesByCuisine(cuisine);
+      print('recipes.dart returned an objet JSON 🖖🏻');
+      return obj;
+    } catch (e) {
+      print('Uh oh! ERROR 🛑');
+      print(e.toString());
+      return e;
     }
   }
 }

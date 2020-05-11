@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app_design/data/ingredients.dart';
 import 'package:recipe_app_design/screens/Cook/suggestRecipes.dart';
+import 'package:recipe_app_design/screens/errorPage.dart';
 import 'package:recipe_app_design/screens/loading.dart' as loadingP;
 import 'package:recipe_app_design/services/color_generator.dart' as cg;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -48,7 +49,11 @@ class _AddIngredientsPageState extends State<AddIngredientsPage> {
                     });
                     var obj = await Ingredients().matchIngredients(value);
                     if (obj == null) {
-                      Navigator.pushNamed(context, '/error-page');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ErrorPage('Error getting Ingredients')));
                       return;
                     }
                     print('The object received:');

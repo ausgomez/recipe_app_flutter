@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ErrorPage extends StatelessWidget {
-  String message = "";
+  final message;
+
+  ErrorPage(this.message);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,7 +14,7 @@ class ErrorPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Something went wrong...',
+              message,
               style: TextStyle(
                 fontSize: 40,
                 color: Colors.white,
@@ -26,7 +29,7 @@ class ErrorPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               color: Colors.red[400],
               child: Text(
-                'Return',
+                'Return Home',
                 style: TextStyle(color: Colors.white),
               ),
             )

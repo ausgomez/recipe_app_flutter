@@ -113,7 +113,7 @@ Future<dynamic> callRandomRecipes(int size) async {
   try {
     response = await http.get(uri, headers: headers);
     final responseJson = json.decode(response.body);
-    print('respondeJSO');
+    print('respondeJSON');
 
     return responseJson['recipes'];
   } catch (e) {
@@ -137,9 +137,34 @@ Future<dynamic> searchRecipesByQuery(String query) async {
     response = await http.get(uri, headers: headers);
     final responseJson = json.decode(response.body);
     print('API call request to search for recipes by query ✅');
-    return responseJson;
+    return responseJson['results'];
   } catch (e) {
-    print('something went wrong at the apiCALL 🛑🛑🛑');
-    return null;
+    print('🛑🛑🛑');
+    print(e);
+    return e;
+  }
+}
+
+/* get recipes by cuisine */
+Future<dynamic> findRecipesByCuisine(String cuisine) async {
+  Map<String, String> parameters = {'apiKey': API_KEY, 'cuisine': cuisine};
+
+  Uri uri = Uri.https(
+    _baseURL,
+    '/recipes/complexSearch',
+    parameters,
+  );
+
+  var response;
+
+  try {
+    response = await http.get(uri, headers: headers);
+    final responseJson = json.decode(response.body);
+    print('API call request to search for recipes by query ✅');
+    return responseJson['results'];
+  } catch (e) {
+    print('🛑🛑🛑');
+    print(e);
+    return e;
   }
 }

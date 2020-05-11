@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Wrapper(),
         '/ingredients-add': (context) => AddIngredientsPage(),
-        '/error-page': (context) => ErrorPage(),
+        '/error-page': (context) => ErrorPage('Something went wrong'),
         '/loading-page': (context) => LoadingPage(),
       },
     );

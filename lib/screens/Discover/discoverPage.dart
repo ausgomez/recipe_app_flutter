@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app_design/data/recipes.dart';
+import 'package:recipe_app_design/screens/Cook/cuisineRecipesPage.dart';
 import 'package:recipe_app_design/screens/Cook/recipePage.dart';
-import 'package:recipe_app_design/screens/Cook/searchRecipes.dart';
+import 'package:recipe_app_design/screens/Cook/SearchRecipesPage.dart';
+import 'package:recipe_app_design/screens/errorPage.dart';
 import 'package:recipe_app_design/screens/loading.dart' as loadingP;
 import 'package:recipe_app_design/services/color_generator.dart' as cg;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -18,16 +20,14 @@ class _DiscoverPageState extends State<DiscoverPage> {
   void fillLocalRecipes() async {
     var obj = await Recipes().randomRecipes(5);
     print(obj);
-    if (obj == null) {
-      Navigator.pushNamed(context, '/error-page');
-      return;
+    if (obj != null) {
+      setState(() {
+        localRecipes = obj;
+      });
     }
-    setState(() {
-      localRecipes = obj;
-    });
   }
 
-  List suggestions = [
+  List cuisines = [
     {'title': 'American', 'icon': Icons.fastfood},
     {'title': 'Greek', 'icon': Icons.local_pizza},
     {'title': 'Italian', 'icon': Icons.local_pizza},
@@ -88,7 +88,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       ? Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SearchRecipes(value)))
+                              builder: (context) => SearchRecipesPage(value)))
                       : print('no query')
                 },
               ),
@@ -97,7 +97,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 height: MediaQuery.of(context).size.height * 0.1,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: suggestions.length,
+                    itemCount: cuisines.length,
                     itemBuilder: (context, index) {
                       return Container(
                         margin: EdgeInsets.symmetric(horizontal: 6),
@@ -106,16 +106,22 @@ class _DiscoverPageState extends State<DiscoverPage> {
                           children: <Widget>[
                             IconButton(
                               color: Colors.grey,
-                              icon: Icon(suggestions[index]['icon']),
+                              icon: Icon(cuisines[index]['icon']),
                               tooltip: 'Category',
                               onPressed: () {
                                 setState(() {
-                                  print(suggestions[index]);
+                                  /* on cuisine pressed */
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CuisineRecipesPage(
+                                                  cuisines[index]['title'])));
                                 });
                               },
                             ),
                             Text(
-                              suggestions[index]['title'],
+                              cuisines[index]['title'],
                               style: TextStyle(color: Colors.grey),
                             ),
                           ],
