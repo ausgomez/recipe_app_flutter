@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/screens/Cook/addIngsPage.dart';
+import 'package:habanero_app/screens/Cook/addIngsPage.dart';
 
 class CookPage extends StatefulWidget {
   @override

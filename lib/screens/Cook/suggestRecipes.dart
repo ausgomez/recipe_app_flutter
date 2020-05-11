@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/data/recipes.dart';
-import 'package:recipe_app_design/screens/Cook/recipePage.dart';
-import 'package:recipe_app_design/screens/errorPage.dart';
-import 'package:recipe_app_design/services/api_calls.dart' as api;
-import 'package:recipe_app_design/services/color_generator.dart' as cg;
-import 'package:recipe_app_design/screens/loading.dart';
-import 'package:recipe_app_design/services/utilities.dart' as utils;
+import 'package:habanero_app/data/recipes.dart';
+import 'package:habanero_app/screens/Cook/recipePage.dart';
+import 'package:habanero_app/screens/errorPage.dart';
+import 'package:habanero_app/services/api_calls.dart' as api;
+import 'package:habanero_app/services/color_generator.dart' as cg;
+import 'package:habanero_app/screens/loading.dart';
+import 'package:habanero_app/services/utilities.dart' as utils;
 
 class SuggestRecipes extends StatefulWidget {
   final passedIngs;

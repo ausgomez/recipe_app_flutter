@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/screens/errorPage.dart';
-import 'package:recipe_app_design/screens/loading.dart';
-import 'package:recipe_app_design/screens/wrapper.dart';
-import 'package:recipe_app_design/screens/Cook/addIngsPage.dart';
+import 'package:habanero_app/screens/errorPage.dart';
+import 'package:habanero_app/screens/loading.dart';
+import 'package:habanero_app/screens/wrapper.dart';
+import 'package:habanero_app/screens/Cook/addIngsPage.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app_design/services/auth.dart';
-import 'package:recipe_app_design/models/User.dart';
+import 'package:habanero_app/services/auth.dart';
+import 'package:habanero_app/models/User.dart';
 
 void main() {
   runApp(MyApp());

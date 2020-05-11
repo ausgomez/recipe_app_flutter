@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:recipe_app_design/models/User.dart';
+import 'package:habanero_app/models/User.dart';
 
 class AuthService {
   /* this instance allows the use of those auth functions from firebase */

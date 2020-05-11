@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/screens/auth/authenticateScreen.dart';
-import 'package:recipe_app_design/services/auth.dart';
-import 'package:recipe_app_design/screens/loading.dart';
-import 'package:recipe_app_design/services/constants.dart';
+import 'package:habanero_app/screens/auth/authenticateScreen.dart';
+import 'package:habanero_app/services/auth.dart';
+import 'package:habanero_app/screens/loading.dart';
+import 'package:habanero_app/services/constants.dart';
 
 class RegisterScreen extends StatefulWidget {
   final Function toggleView;

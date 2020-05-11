@@ -1,5 +1,5 @@
-import 'package:recipe_app_design/services/api_calls.dart';
-import 'package:recipe_app_design/models/Recipe.dart';
+import 'package:habanero_app/services/api_calls.dart';
+import 'package:habanero_app/models/Recipe.dart';
 import 'package:flutter/material.dart';
 
 class Recipes {

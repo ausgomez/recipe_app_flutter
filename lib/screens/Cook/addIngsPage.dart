@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/data/ingredients.dart';
-import 'package:recipe_app_design/screens/Cook/suggestRecipes.dart';
-import 'package:recipe_app_design/screens/errorPage.dart';
-import 'package:recipe_app_design/screens/loading.dart' as loadingP;
-import 'package:recipe_app_design/services/color_generator.dart' as cg;
+import 'package:habanero_app/data/ingredients.dart';
+import 'package:habanero_app/screens/Cook/suggestRecipes.dart';
+import 'package:habanero_app/screens/errorPage.dart';
+import 'package:habanero_app/screens/loading.dart' as loadingP;
+import 'package:habanero_app/services/color_generator.dart' as cg;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class AddIngredientsPage extends StatefulWidget {

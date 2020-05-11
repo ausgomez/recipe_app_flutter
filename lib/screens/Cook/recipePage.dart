@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/models/Recipe.dart';
+import 'package:habanero_app/models/Recipe.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:recipe_app_design/screens/loading.dart';
-import 'package:recipe_app_design/services/color_generator.dart' as cg;
+import 'package:habanero_app/screens/loading.dart';
+import 'package:habanero_app/services/color_generator.dart' as cg;
 
 class RecipePage extends StatefulWidget {
   /* To build a recipe page, a valid recipe ID must be provided */

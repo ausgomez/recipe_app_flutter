@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/screens/auth/registerScreen.dart';
-import 'package:recipe_app_design/screens/auth/signInScreen.dart';
+import 'package:habanero_app/screens/auth/registerScreen.dart';
+import 'package:habanero_app/screens/auth/signInScreen.dart';
 
 class AuthenticateScreen extends StatefulWidget {
   @override

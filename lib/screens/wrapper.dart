@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/screens/Discover/discoverPage.dart';
-import 'package:recipe_app_design/screens/Cook/cookPage.dart';
-import 'package:recipe_app_design/screens/Profile/profilePage.dart';
-import 'package:recipe_app_design/menus/bottomNav.dart';
-import 'package:recipe_app_design/models/User.dart';
+import 'package:habanero_app/screens/Discover/discoverPage.dart';
+import 'package:habanero_app/screens/Cook/cookPage.dart';
+import 'package:habanero_app/screens/Profile/profilePage.dart';
+import 'package:habanero_app/menus/bottomNav.dart';
+import 'package:habanero_app/models/User.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app_design/screens/auth/authenticateScreen.dart';
+import 'package:habanero_app/screens/auth/authenticateScreen.dart';
 
 class Wrapper extends StatefulWidget {
   @override

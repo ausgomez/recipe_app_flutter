@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/data/recipes.dart';
-import 'package:recipe_app_design/screens/Cook/cuisineRecipesPage.dart';
-import 'package:recipe_app_design/screens/Cook/recipePage.dart';
-import 'package:recipe_app_design/screens/Cook/SearchRecipesPage.dart';
-import 'package:recipe_app_design/screens/errorPage.dart';
-import 'package:recipe_app_design/screens/loading.dart' as loadingP;
-import 'package:recipe_app_design/services/color_generator.dart' as cg;
+import 'package:habanero_app/data/recipes.dart';
+import 'package:habanero_app/screens/Cook/cuisineRecipesPage.dart';
+import 'package:habanero_app/screens/Cook/recipePage.dart';
+import 'package:habanero_app/screens/Cook/SearchRecipesPage.dart';
+import 'package:habanero_app/screens/errorPage.dart';
+import 'package:habanero_app/screens/loading.dart' as loadingP;
+import 'package:habanero_app/services/color_generator.dart' as cg;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DiscoverPage extends StatefulWidget {

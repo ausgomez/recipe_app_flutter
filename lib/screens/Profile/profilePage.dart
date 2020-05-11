@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app_design/screens/loading.dart';
-import 'package:recipe_app_design/services/auth.dart';
+import 'package:habanero_app/screens/loading.dart';
+import 'package:habanero_app/services/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app_design/models/User.dart';
+import 'package:habanero_app/models/User.dart';
 import 'package:simple_gravatar/simple_gravatar.dart';
 
 class ProfilePage extends StatefulWidget {
