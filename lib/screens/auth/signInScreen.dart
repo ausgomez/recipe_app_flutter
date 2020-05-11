@@ -47,9 +47,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                            width: 200,
-                            height: 200,
-                            child: Image.asset("assets/images/habanero.png")),
+                          width: 200,
+                          height: 200,
+                          child: Image.asset("assets/images/habanero.png"),
+                        ),
                         SizedBox(
                           height: 20.0,
                         ),

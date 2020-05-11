@@ -18,6 +18,7 @@ dependencies:
   cloud_firestore: ^0.13.5
   provider: ^4.1.1
   simple_gravatar: ^1.0.5
+  url_launcher: ^5.4.5
 
   # for env variables
   flutter_dotenv: ^2.1.0
