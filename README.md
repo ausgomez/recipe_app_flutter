@@ -1,4 +1,6 @@
-# Recipe Builder App
+# Habanero: An open source recipe builder app
+
+![Image of Habanero](https://raw.githubusercontent.com/Anstroy/recipe_app_flutter/master/assets/images/habanero.png)
 
 This is my very first Flutter Project
 and it is meant to help users to find food recipes
@@ -11,4 +13,5 @@ This project uses Spoonacular API to retrieve information
 ## Authentication
 
 The project uses Google Firebase to handle the Auth
+
 

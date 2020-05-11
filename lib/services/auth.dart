@@ -7,7 +7,7 @@ class AuthService {
 
   // create user obj based on FirebaseUser
   User _userFromFirebaseUser(FirebaseUser user) {
-    return user != null ? User(uid: user.uid) : null;
+    return user != null ? User(uid: user.uid, email: user.email) : null;
   }
 
   Stream<User> get user {
@@ -56,5 +56,10 @@ class AuthService {
       print(e.toString());
       return null;
     }
+  }
+
+  // change password
+  Future<void> resetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
   }
 }

@@ -37,12 +37,17 @@ class _SignInScreenState extends State<SignInScreen> {
               title: Text('Sign in'),
             ),
             body: Container(
+                alignment: AlignmentDirectional.centerEnd,
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 child: Form(
                   key:
                       _formKey, // binding the private validator key to this property
                   child: Column(
                     children: <Widget>[
+                      Container(
+                          width: 200,
+                          height: 200,
+                          child: Image.asset("assets/images/habanero.png")),
                       SizedBox(
                         height: 20.0,
                       ),
@@ -73,34 +78,51 @@ class _SignInScreenState extends State<SignInScreen> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      RaisedButton(
-                          color: Colors.pink[400],
-                          child: Text('Sign in',
-                              style: TextStyle(color: Colors.white)),
-                          onPressed: () async {
-                            error = '';
-                            if (_formKey.currentState.validate()) {
-                              /* if the form is valid, then do something */
+                      Container(
+                        width: 1000,
+                        height: 50,
+                        child: RaisedButton(
+                            color: Colors.red[300],
+                            child: Text('Sign in',
+                                style: TextStyle(color: Colors.white)),
+                            onPressed: () async {
+                              error = '';
                               if (_formKey.currentState.validate()) {
-                                setState(() => loading = true);
-                                dynamic result =
-                                    await _auth.signInWithEmailAndPassword(
-                                        email, password);
-                                if (result == null) {
-                                  setState(() {
-                                    error =
-                                        'Could not sign in with those credentials.';
-                                    loading = false;
-                                  });
+                                /* if the form is valid, then do something */
+                                if (_formKey.currentState.validate()) {
+                                  setState(() => loading = true);
+                                  dynamic result =
+                                      await _auth.signInWithEmailAndPassword(
+                                          email, password);
+                                  if (result == null) {
+                                    setState(() {
+                                      error =
+                                          'Could not sign in with those credentials.';
+                                      loading = false;
+                                    });
+                                  }
                                 }
                               }
-                            }
-                          }),
-                      SizedBox(
-                        height: 12.0,
+                            }),
                       ),
                       Text(error,
-                          style: TextStyle(color: Colors.red, fontSize: 14.0))
+                          style: TextStyle(color: Colors.red, fontSize: 14.0)),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Divider(),
+                      Text('Are you new here?',
+                          style: TextStyle(color: Colors.white, fontSize: 20)),
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        width: 1000,
+                        height: 50,
+                        child: RaisedButton(
+                            color: Colors.blue[400],
+                            child: Text('Register Now',
+                                style: TextStyle(color: Colors.white)),
+                            onPressed: () => widget.toggleView()),
+                      )
                     ],
                   ),
                 )),

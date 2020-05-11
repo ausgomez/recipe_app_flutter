@@ -17,6 +17,7 @@ dependencies:
   firebase_auth: ^0.16.0
   cloud_firestore: ^0.13.5
   provider: ^4.1.1
+  simple_gravatar: ^1.0.5
 
 dev_dependencies:
   flutter_test:
