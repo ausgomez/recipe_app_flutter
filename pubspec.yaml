@@ -19,6 +19,9 @@ dependencies:
   provider: ^4.1.1
   simple_gravatar: ^1.0.5
 
+  # for env variables
+  flutter_dotenv: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -30,6 +33,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/images/
+     - .env
 
   # fonts:
   #   - family: Schyler

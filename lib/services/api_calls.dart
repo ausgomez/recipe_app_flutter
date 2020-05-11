@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
@@ -7,7 +8,7 @@ final String _baseURL = "api.spoonacular.com";
 //const String API_KEY = "e33830a4c39a4837ba390fb050cd284c";
 //const String API_KEY = "1f9d617ba13041859ea773423b0e6291";
 //const String API_KEY = "c412e93b97ca4181a521352987c56254";
-const String API_KEY = "3f93e5214b0a44b78205c5ec6272f785";
+String API_KEY = DotEnv().env['SPOONACULAR_API'];
 
 Map<String, String> headers = {
   HttpHeaders.contentTypeHeader: 'application/json',

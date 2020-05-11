@@ -6,8 +6,11 @@ import 'package:habanero_app/screens/Cook/addIngsPage.dart';
 import 'package:provider/provider.dart';
 import 'package:habanero_app/services/auth.dart';
 import 'package:habanero_app/models/User.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  /* load the .env file */
+  await DotEnv().load('.env');
   runApp(MyApp());
 }
 
