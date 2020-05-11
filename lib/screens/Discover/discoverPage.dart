@@ -83,10 +83,13 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   contentPadding: EdgeInsets.all(16),
                 ),
                 onSubmitted: (value) => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SearchRecipes(value)))
+                  /* Search for recipe query on submit */
+                  value.trim() != "" && value.trim().length >= 3
+                      ? Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SearchRecipes(value)))
+                      : print('no query')
                 },
               ),
               SizedBox(height: 10),

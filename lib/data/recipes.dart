@@ -45,8 +45,7 @@ class Recipes {
     try {
       final obj = await searchRecipesByQuery(query);
       print('recipes.dart returned an objet JSON 🖖🏻');
-      print(obj['recipes']);
-      return obj['recipes'];
+      return obj['results'];
     } catch (e) {
       print('Uh oh! ERROR 🛑');
       print(e.toString());

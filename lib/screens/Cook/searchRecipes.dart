@@ -16,6 +16,7 @@ class SearchRecipes extends StatefulWidget {
 
 class _SearchRecipesState extends State<SearchRecipes> {
   dynamic localRecipes = [];
+  bool searched = false;
 
   void fillLocalRecipes() async {
     print("query is ${widget.query}");
@@ -28,6 +29,7 @@ class _SearchRecipesState extends State<SearchRecipes> {
     }
     setState(() {
       localRecipes = obj.toList();
+      searched = true;
     });
   }
 
@@ -40,73 +42,85 @@ class _SearchRecipesState extends State<SearchRecipes> {
 
   @override
   Widget build(BuildContext context) {
-    return localRecipes.length <= 0
+    return searched == false
         ? LoadingPage()
         : Scaffold(
             appBar: AppBar(
-              title: Text('Recipes Available'),
+              title: Text('Searching for "${widget.query}"'),
             ),
-            body: ListView.builder(
-              itemCount: localRecipes.length,
-              itemBuilder: (context, int index) {
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                RecipePage(localRecipes[index]['id'])));
-                  },
-                  child: Container(
-                    height: 130,
-                    margin: EdgeInsets.only(top: 10, left: 15, right: 15),
-                    decoration: BoxDecoration(
-                      color: cg.lightColor(index),
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(20),
-                          child: CircleAvatar(
-                            radius: 45,
-                            backgroundImage:
-                                NetworkImage('${localRecipes[index]['image']}'),
+            body: localRecipes.length == 0
+                ? Container(
+                    alignment: Alignment.center,
+                    child: Text("No Results Found!",
+                        style: TextStyle(fontSize: 30)),
+                  )
+                : ListView.builder(
+                    itemCount: localRecipes.length,
+                    itemBuilder: (context, int index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      RecipePage(localRecipes[index]['id'])));
+                        },
+                        child: Container(
+                          height: 130,
+                          margin: EdgeInsets.only(top: 10, left: 15, right: 15),
+                          decoration: BoxDecoration(
+                            color: cg.lightColor(index),
+                            borderRadius: BorderRadius.circular(40),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.all(20),
+                                child: CircleAvatar(
+                                  radius: 45,
+                                  backgroundImage: NetworkImage(
+                                      'https://spoonacular.com/recipeImages/${localRecipes[index]['image']}'),
+                                ),
+                              ),
+                              Container(
+                                child: Flexible(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        utils.textLenCheck(
+                                            localRecipes[index]['title']),
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 20),
+                                      ),
+                                      FlatButton.icon(
+                                        onPressed: null,
+                                        icon: Icon(Icons.access_time),
+                                        label: Text(localRecipes[index]
+                                                    ['readyInMinutes']
+                                                .toString() +
+                                            " mins"),
+                                        color: Colors.orange,
+                                        padding: EdgeInsets.all(10.0),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                        Container(
-                          child: Flexible(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  utils.textLenCheck(
-                                      localRecipes[index]['title']),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.black54, fontSize: 20),
-                                ),
-                                FlatButton.icon(
-                                  onPressed: null,
-                                  icon: Icon(Icons.star),
-                                  label: Text(
-                                      localRecipes[index]['likes'].toString()),
-                                  color: Colors.orange,
-                                  padding: EdgeInsets.all(10.0),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           );
   }
 
