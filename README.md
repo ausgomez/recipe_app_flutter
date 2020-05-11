@@ -8,10 +8,10 @@ based on what they have available.
 
 ## API
 
-This project uses Spoonacular API to retrieve information
+This project uses [Spoonacular API](https://spoonacular.com/food-api/docs) to retrieve information
 
 ## Authentication
 
-The project uses Google Firebase to handle the Auth
+The project uses [Google Firebase](https://firebase.google.com/) to handle the Auth
 
 
