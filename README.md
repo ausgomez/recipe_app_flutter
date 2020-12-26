@@ -2,6 +2,8 @@
 
 ![Image of Habanero](https://raw.githubusercontent.com/Anstroy/recipe_app_flutter/master/assets/images/habanero.png)
 
+[DEMO Video (1 min)](https://share.getcloudapp.com/nOuD9DBO)
+
 This is my very first Flutter Project
 and it is meant to help users to find food recipes
 based on what they have available.
